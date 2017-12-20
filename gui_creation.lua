@@ -2,6 +2,8 @@
    A file that holds all the functions this mod uses for gui creation.
 --]]
 
+local mod_gui = require("mod-gui")
+
 --Displays a gui for renaming a note
 function makeRenameNoteGUI(gui)
    local player = game.players[gui.player_index]
@@ -50,9 +52,9 @@ function makeExistingNoteGUI(gui)
       caption = global.player_notes[gui.player_index][gui["quill-notes-list-frame"]["quill-notes-list-drop-down"].selected_index].name
    }
 
-   existingNoteFrame.style.minimal_width = 500
+   existingNoteFrame.style.minimal_width = 450
    existingNoteFrame.style.maximal_height= 600
-   existingNoteFrame.style.minimal_height = 600
+   existingNoteFrame.style.minimal_height = 500
    existingNoteFrame.style.maximal_width = 500
 
    local textBox= existingNoteFrame.add{
@@ -61,10 +63,8 @@ function makeExistingNoteGUI(gui)
    }
 
    textBox.word_wrap = true
-   textBox.style.minimal_width = 400
-   textBox.style.maximal_height= 400
-   textBox.style.minimal_height = 400
-   textBox.style.maximal_width = 400
+   textBox.style.width = 400
+   textBox.style.height= 400
    textBox.text = global.player_notes[gui.player_index][gui["quill-notes-list-frame"]["quill-notes-list-drop-down"].selected_index].contents
 
    local saveCancelFlow= existingNoteFrame.add{
@@ -110,7 +110,7 @@ function makeNewNoteGUI(gui)
 
    newNoteFrame.style.minimal_width = 450
    newNoteFrame.style.maximal_height= 550
-   newNoteFrame.style.minimal_height = 550
+   newNoteFrame.style.minimal_height = 500
    newNoteFrame.style.maximal_width = 450
 
    local textBox= newNoteFrame.add{
@@ -119,10 +119,8 @@ function makeNewNoteGUI(gui)
    }
    textBox.text = "Type your note here. Notes are saved when you hit save."
    textBox.word_wrap = true
-   textBox.style.minimal_width = 400
-   textBox.style.maximal_height= 400
-   textBox.style.minimal_height = 400
-   textBox.style.maximal_width = 400
+   textBox.style.width = 400
+   textBox.style.height= 400
 
    local saveCancelFlow= newNoteFrame.add{
       type = "flow",
@@ -152,7 +150,7 @@ end
 
 --Regenerates the UI of the mod completely, in the event of init or a new player.
 function nukeAndRegenUI(player)
-   local lGui = player.gui.left
+   local lGui = mod_gui.get_button_flow(player)
    local cGui = player.gui.center
 
    --Clear the existing mod's GUI
@@ -168,12 +166,12 @@ function nukeAndRegenUI(player)
 
    lGui.add{ --add the open notes button
       type = "sprite-button",
-      tooltip = "Click to open notes.",
+      tooltip = "Click to toggle notes.",
       name = "quill-open-notes",
       sprite = "quill-notes-sprite",
       style = "quill_small_buttons"
    }
-
+   
    local noteListFrame =  constructNotesList(cGui)
 end
 
@@ -225,13 +223,6 @@ function constructNotesList(gui)
       style = "quill_buttons",
       sprite = "quill-rename-note-sprite",
       tooltip = "Renames the currently selected note."
-   }
-   noteListFrame.add{
-      type = "button",
-      name = "quill-close-button",
-      style = "quill_buttons",
-      caption = "Close",
-      tooltip = "Closes this gui."
    }
    noteListFrame.add{
       type = "sprite-button",
