@@ -2,7 +2,7 @@ data:extend{
    {
       type="sprite",
       name="quill-notes-sprite",
-      filename = "__Quill__/graphics/quill.png",
+      filename = "__InkQuill__/graphics/quill.png",
       priority = "extra-high",
       width = 32,
       height = 32,
@@ -42,7 +42,7 @@ data:extend{
    {
       type="sprite",
       name="quill-open-note-sprite",
-      filename = "__Quill__/graphics/open.png",
+      filename = "__InkQuill__/graphics/open.png",
       priority = "extra-high",
       width = 32,
       height = 32,
@@ -58,7 +58,7 @@ data:extend{
    {
       type="sprite",
       name="quill-sort-sprite",
-      filename = "__Quill__/graphics/sort.png",
+      filename = "__InkQuill__/graphics/sort.png",
       priority = "extra-high",
       width = 64,
       height = 64,
