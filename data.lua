@@ -68,10 +68,8 @@ data:extend{
 data.raw["gui-style"].default.quill_buttons = {
    type="button_style",
    parent="button",
-   maximal_height = 65,
-   minimal_height = 65,
-   maximal_width = 65,
-   minimal_width = 65,
+   height = 49,
+   width = 49,
    top_padding = 0,
    bottom_padding = 0,
    right_padding = 0,

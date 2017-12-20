@@ -2,6 +2,8 @@
    A file that holds all the functions this mod uses for gui creation.
 --]]
 
+local mod_gui = require("mod-gui")
+
 --Displays a gui for renaming a note
 function makeRenameNoteGUI(gui)
    local player = game.players[gui.player_index]
@@ -152,7 +154,7 @@ end
 
 --Regenerates the UI of the mod completely, in the event of init or a new player.
 function nukeAndRegenUI(player)
-   local lGui = player.gui.left
+   local lGui = mod_gui.get_button_flow(player)
    local cGui = player.gui.center
 
    --Clear the existing mod's GUI
@@ -168,12 +170,12 @@ function nukeAndRegenUI(player)
 
    lGui.add{ --add the open notes button
       type = "sprite-button",
-      tooltip = "Click to open notes.",
+      tooltip = "Click to toggle notes.",
       name = "quill-open-notes",
       sprite = "quill-notes-sprite",
       style = "quill_small_buttons"
    }
-
+   
    local noteListFrame =  constructNotesList(cGui)
 end
 
@@ -225,13 +227,6 @@ function constructNotesList(gui)
       style = "quill_buttons",
       sprite = "quill-rename-note-sprite",
       tooltip = "Renames the currently selected note."
-   }
-   noteListFrame.add{
-      type = "button",
-      name = "quill-close-button",
-      style = "quill_buttons",
-      caption = "Close",
-      tooltip = "Closes this gui."
    }
    noteListFrame.add{
       type = "sprite-button",

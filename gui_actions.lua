@@ -16,7 +16,8 @@ function(event)
     if element.name == "quill-close-button" then --used only for the note list gui
         element.parent.style.visible = false
     elseif element.name == "quill-open-notes" and not cGui["quill-new-note-frame"] and not cGui["quill-existing-note-frame"] and not  cGui["quill-rename-note-frame"] then
-        cGui["quill-notes-list-frame"].style.visible = true
+        cGui["quill-notes-list-frame"].style.visible = not cGui["quill-notes-list-frame"].style.visible
+		player.opened = cGui["quill-notes-list-frame"].style.visible and cGui["quill-notes-list-frame"] or nil
     elseif element.name == "quill-new-note-button" then
         makeNewNoteGUI(cGui)
     elseif element.name == "quill-cancel-button" then --used for making and editing notes
@@ -78,6 +79,16 @@ function(event)
     end --ends chain of elseifs
 end --ends function
 )
+
+--close the gui main gui on normal gui close button presses
+script.on_event({defines.events.on_gui_closed},
+function(event)
+	if event.gui_type == defines.gui_type.custom and event.element and string.find(event.element.name,"quill") then
+		if event.element.name == "quill-notes-list-frame" then
+			event.element.style.visible = false
+		end
+	end
+end)
 
 
 --Actually does the rename of the current note
