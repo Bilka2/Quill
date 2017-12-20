@@ -52,9 +52,9 @@ function makeExistingNoteGUI(gui)
       caption = global.player_notes[gui.player_index][gui["quill-notes-list-frame"]["quill-notes-list-drop-down"].selected_index].name
    }
 
-   existingNoteFrame.style.minimal_width = 500
+   existingNoteFrame.style.minimal_width = 450
    existingNoteFrame.style.maximal_height= 600
-   existingNoteFrame.style.minimal_height = 600
+   existingNoteFrame.style.minimal_height = 500
    existingNoteFrame.style.maximal_width = 500
 
    local textBox= existingNoteFrame.add{
@@ -63,10 +63,8 @@ function makeExistingNoteGUI(gui)
    }
 
    textBox.word_wrap = true
-   textBox.style.minimal_width = 400
-   textBox.style.maximal_height= 400
-   textBox.style.minimal_height = 400
-   textBox.style.maximal_width = 400
+   textBox.style.width = 400
+   textBox.style.height= 400
    textBox.text = global.player_notes[gui.player_index][gui["quill-notes-list-frame"]["quill-notes-list-drop-down"].selected_index].contents
 
    local saveCancelFlow= existingNoteFrame.add{
@@ -112,7 +110,7 @@ function makeNewNoteGUI(gui)
 
    newNoteFrame.style.minimal_width = 450
    newNoteFrame.style.maximal_height= 550
-   newNoteFrame.style.minimal_height = 550
+   newNoteFrame.style.minimal_height = 500
    newNoteFrame.style.maximal_width = 450
 
    local textBox= newNoteFrame.add{
@@ -121,10 +119,8 @@ function makeNewNoteGUI(gui)
    }
    textBox.text = "Type your note here. Notes are saved when you hit save."
    textBox.word_wrap = true
-   textBox.style.minimal_width = 400
-   textBox.style.maximal_height= 400
-   textBox.style.minimal_height = 400
-   textBox.style.maximal_width = 400
+   textBox.style.width = 400
+   textBox.style.height= 400
 
    local saveCancelFlow= newNoteFrame.add{
       type = "flow",
