@@ -16,7 +16,7 @@ function makeRenameNoteGUI(gui)
    }
    renameNoteFrame.add{
       type = "label",
-      caption = "Rename note to: ",
+      caption = {"gui.quill-rename-note-label"},
       name = "quill-rename-note-label"
    }
    renameNoteFrame.add{
@@ -27,7 +27,7 @@ function makeRenameNoteGUI(gui)
       type = "sprite-button",
       style = "quill_buttons",
       sprite = "quill-confirm-sprite",
-      tooltip = "Rename this note.",
+      tooltip = {"gui.quill-confirm-rename-button-tooltip"},
       name = "quill-confirm-rename-button"
    }
 
@@ -76,20 +76,20 @@ function makeExistingNoteGUI(gui)
       type = "sprite-button",
       style = "quill_buttons",
       sprite = "quill-confirm-sprite",
-      tooltip = "Save note.",
+      tooltip = {"gui.quill-save-note-button-tooltip"},
       name = "quill-save-note-button"
    }
    saveCancelFlow.add{
       type = "sprite-button",
       style = "quill_buttons",
       sprite = "quill-cancel-sprite",
-      tooltip = "Exit without saving note.",
+      tooltip = {"gui.quill-cancel-note-button-tooltip"},
       name = "quill-cancel-note-button"
    }
    saveCancelFlow.add{
       type = "button",
-      caption = "Chat",
-      tooltip = "Print this entire note to chat, for sharing. If you are not an admin, your max print length depends on your time played on this save.",
+      caption = {"gui.quill-print-note-to-chat-button-caption"},
+      tooltip = {"gui.quill-print-note-to-chat-button-tooltip"},
       name = "quill-print-note-to-chat-button"
    }
 
@@ -105,13 +105,12 @@ function makeNewNoteGUI(gui)
       type = "frame",
       direction = "vertical",
       name = "quill-new-note-frame",
-      caption = "New untitled note"
+      caption = {"gui.quill-new-note-frame-caption"}
    }
 
-   newNoteFrame.style.minimal_width = 450
+   newNoteFrame.style.width = 450
    newNoteFrame.style.maximal_height= 550
    newNoteFrame.style.minimal_height = 500
-   newNoteFrame.style.maximal_width = 450
 
    local textBox= newNoteFrame.add{
       type = "text-box",
@@ -131,14 +130,14 @@ function makeNewNoteGUI(gui)
       type = "sprite-button",
       style = "quill_buttons",
       sprite = "quill-confirm-sprite",
-      tooltip = "Save as a new note.",
+      tooltip = {"gui.quill-save-new-note-button-tooltip"},
       name = "quill-save-note-button"
    }
    saveCancelFlow.add{
       type = "sprite-button",
       style = "quill_buttons",
       sprite = "quill-cancel-sprite",
-      tooltip = "Exit without saving note.",
+      tooltip = {"gui.quill-cancel-note-button-tooltip"},
       name = "quill-cancel-note-button"
    }
 
@@ -166,7 +165,7 @@ function nukeAndRegenUI(player)
 
    lGui.add{ --add the open notes button
       type = "sprite-button",
-      tooltip = "Click to toggle notes.",
+      tooltip = {"gui.quill-open-notes-tooltip"},
       name = "quill-open-notes",
       sprite = "quill-notes-sprite",
       style = "quill_small_buttons"
@@ -200,7 +199,7 @@ function constructNotesList(gui)
       name = "quill-open-note-button",
       style = "quill_buttons",
       sprite = "quill-open-note-sprite",
-      tooltip = "Opens the selected note."
+      tooltip = {"gui.quill-open-note-button"}
    }
 
    operationsFlow.add{
@@ -208,28 +207,28 @@ function constructNotesList(gui)
       name = "quill-new-note-button",
       style = "quill_buttons",
       sprite = "quill-add-note-sprite",
-      tooltip = "Create a new note."
+      tooltip = {"gui.quill-new-note-button"}
    }
    operationsFlow.add{
       type = "sprite-button",
       name = "quill-delete-note-button",
       style = "quill_buttons",
       sprite = "quill-delete-sprite",
-      tooltip = "Deletes the currently selected note. Must hold control to use."
+      tooltip = {"gui.quill-delete-note-button"}
    }
    operationsFlow.add{
       type = "sprite-button",
       name = "quill-rename-note-button",
       style = "quill_buttons",
       sprite = "quill-rename-note-sprite",
-      tooltip = "Renames the currently selected note."
+      tooltip = {"gui.quill-rename-note-button"}
    }
    noteListFrame.add{
       type = "sprite-button",
       name = "quill-sort-button",
       style = "quill_buttons",
       sprite = "quill-sort-sprite",
-      tooltip = "Sorts the list of notes alphabetically by title."
+      tooltip = {"gui.quill-sort-button"}
    }
 
 

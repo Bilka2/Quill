@@ -38,21 +38,21 @@ function(event)
         if event.control then --a bit of a safety
             deleteCurrentNote(player)
         else
-            player.print("Hold control while clicking to delete note.")
+            player.print({"msg.quill-ctrl-to-delete"})
         end
     elseif element.name == "quill-open-note-button" then
         if global.player_notes[player.index][cGui["quill-notes-list-frame"]["quill-notes-list-drop-down"].selected_index] then
             element.parent.parent.style.visible = false
             makeExistingNoteGUI(cGui)
         else
-            player.print("There is no note at that position.")
+            player.print({"msg.quill-no-note-selected"})
         end
     elseif element.name == "quill-rename-note-button" then
         if global.player_notes[player.index][cGui["quill-notes-list-frame"]["quill-notes-list-drop-down"].selected_index] then
             cGui["quill-notes-list-frame"].style.visible = false
             makeRenameNoteGUI(cGui)
         else
-            player.print("Cannot rename a non-existant note.")
+            player.print({"msg.quill-nonexistant-note-rename"})
         end
     elseif element.name == "quill-confirm-rename-button" then
         if cGui["quill-rename-note-frame"]["quill-rename-note-text-field"].text ~= "" then
@@ -60,21 +60,21 @@ function(event)
             cGui["quill-rename-note-frame"].destroy()
             cGui["quill-notes-list-frame"].style.visible = true
         else
-            player.print("Cannot rename note to a blank name.")
+            player.print({"msg.quill-rename-to-blank"})
         end
     elseif element.name == "quill-print-note-to-chat-button" then
         if player.admin then
             player.force.print("[" .. player.name .. "]: " .. element.parent.parent["quill-note-text-box"].text)
         else --if player isn't an admin, printing length is based on online time, 1 char per min played.
             local chars = math.floor((player.online_time / 60) / 60)
-            player.print("Player is not an admin, printing up to " .. chars .. " characters...")
+            player.print({"msg.quill-nonadmin-print", chars})
             player.force.print("[" .. player.name .. "]: " .. string.sub(element.parent.parent["quill-note-text-box"].text,1,chars))
         end
     elseif element.name == "quill-sort-button" then
         if global.player_notes[player.index][cGui["quill-notes-list-frame"]["quill-notes-list-drop-down"].selected_index] then
             sortNotes(player)
         else
-            player.print("No notes to sort.")
+            player.print({"msg.quill-nothing-to-sort"})
         end
     end --ends chain of elseifs
 end --ends function
